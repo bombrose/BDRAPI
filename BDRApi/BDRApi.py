@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Python 百度即用api sdk(http://apistore.baidu.com/apiworks/readyapiprefecture.html).
+Python 百度即用api sdk(http://apistore.baidu.com).
 '''
 __version__ = '0.1.0'
 __author__ = 'czc(chenzhch@gmail.com)'
