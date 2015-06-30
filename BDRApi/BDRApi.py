@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Python Baidu ready api sdk(http://apistore.baidu.com/apiworks/readyapiprefecture.html).
+Python 百度即用api sdk(http://apistore.baidu.com/apiworks/readyapiprefecture.html).
 '''
 __version__ = '0.1.0'
 __author__ = 'czc(chenzhch@gmail.com)'
@@ -12,8 +12,10 @@ class BDRAError(StandardError):
 
 class BDRAClient(object):
     _API_URL = 'http://apis.baidu.com/apistore/'
-    _API_KEY = '811ec1b9a080c8d7659725633c96629a'
-    _TIMEOUT = 10
+
+    def __init__(self, apikey='811ec1b9a080c8d7659725633c96629a', timeout=15):
+        self._API_KEY = apikey
+        self._TIMEOUT = timeout
 
     @staticmethod
     def _format_path(path):
@@ -43,6 +45,8 @@ class BDRAClient(object):
         req.add_header("apikey", self._API_KEY)
         req.add_header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36")
         resp = urllib2.urlopen(req, timeout=self._TIMEOUT)
+        if resp.code != 200:
+            raise BDRAError(resp.code, resp.msg)
         return self._parse_data(resp.read())
 
     def _get_url(self, uri):
