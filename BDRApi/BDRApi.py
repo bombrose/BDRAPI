@@ -39,14 +39,13 @@ class BDRAClient(object):
                 if result.has_key("retData"):
                     return result["retData"]
             return result
-        raise RuntimeError
+        raise ValueError
 
     def _call(self, req):
         req.add_header("apikey", self._API_KEY)
         req.add_header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36")
         resp = urllib2.urlopen(req, timeout=self._TIMEOUT)
-        if resp.code != 200:
-            raise BDRAError(resp.code, resp.msg)
+        assert resp.code == 200, resp.msg
         return self._parse_data(resp.read())
 
     def _get_url(self, uri):
