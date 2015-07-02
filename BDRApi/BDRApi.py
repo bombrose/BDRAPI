@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 '''
 Python 百度即用api sdk(http://apistore.baidu.com).
+
+https://github.com/bombrose/BDRAPI/
 '''
 __version__ = '0.1.0'
 __author__ = 'czc(chenzhch@gmail.com)'
